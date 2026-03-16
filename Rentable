@@ -1,0 +1,4 @@
+public interface Rentable {
+    public boolean isRentable(); // returns true if the product is avaliable.
+
+}
