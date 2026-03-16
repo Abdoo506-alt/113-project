@@ -1,0 +1,71 @@
+public class Accessory implements Rentable {
+    private String name;                // Accessory name
+    private String type;                //Accessory type
+    private double pricePerDay;         //Accessory cost per day
+    private boolean availabilityStatus; //Accessory availability Status
+    public Accessory(){      //Default constructor
+       this.name = "NoName";
+       this.type = "NoType";
+       pricePerDay = 0;
+       availabilityStatus = false;
+    }
+    public Accessory(String name,String type, double price, boolean availabilityStatus){      // Parameterized constructor
+        this.name = name;
+        this.type = type;
+        pricePerDay = price;
+        this.availabilityStatus = availabilityStatus;
+    }
+    @Override
+    public boolean isRentable(){ // Checks Accessory availability Status.
+        return availabilityStatus;
+    }
+
+    public double calculateRentalCost(int days){ //Returns costs days of the Accessory.
+        return days * pricePerDay;
+    }
+
+    public String toString() { //Display Accessory
+        String result = "Accessory Details: \n" +
+                "Name: " + name +
+                "\nType: " + type
+                + "\nPricePerDay " + pricePerDay;
+
+        if(availabilityStatus){ //Checks Accessory availability
+            result+= "\nAccessory availability: available" ;
+        }else
+            result+= "\nAccessory availability: Not available" ;
+
+        return result;
+    }
+
+    //Start Setters and Getters.
+    public void setName(String name){
+        this.name = name;
+    }
+    public void setType(String type){
+        this.type = type;
+    }
+    public void setPricePerDay(double price){
+        pricePerDay = price;
+    }
+    public void setAvailability(boolean availabilityStatus){
+        this.availabilityStatus = availabilityStatus;
+    }
+    public String getName() {
+        return name;
+    }
+
+    public boolean getAvailabilityStatus() {
+        return availabilityStatus;
+    }
+
+    public double getPricePerDay() {
+        return pricePerDay;
+    }
+
+    public String getType() {
+        return type;
+    }
+    //End Setters and Getters
+
+}
