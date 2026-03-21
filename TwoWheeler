@@ -1,0 +1,58 @@
+
+
+public class TwoWheeler extends Vehicle{
+	private String type;// : type of the vehicle.
+	private boolean helmetlncluded;//: check if there is a helmet safe included or not.
+	private double pricePerDay;//: price per day espacially for Two Wheeler.
+	
+	
+	public TwoWheeler(String Brand,String Model,int Years,String colour,boolean AvailabilityStatus,String type, boolean hemetlnduded, double pricePerDay) {//:Constructor
+		super(Brand,Model,Years,colour,AvailabilityStatus);
+		this.type = type;
+		this.helmetlncluded = hemetlnduded;
+		this.pricePerDay = pricePerDay;
+	}
+
+
+	public double calculateRentalCost(int days) {//Abstract Method Calculate the Rental Cost , If the user want to rent  helment return days*price +25 else days*price
+		if(helmetlncluded)
+			return pricePerDay*days + 25;
+		else
+			return pricePerDay*days;
+	}
+
+	// ↓ GETTERS & SETTERS OF THE ATTRUBUTES ↓.
+
+	public String getType() {
+		return type;
+	}
+
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+
+	public boolean isHelmetlnduded() {
+		return helmetlncluded;
+	}
+
+
+	public void setHelmetlnduded(boolean helmetlnduded) {
+		this.helmetlncluded = helmetlnduded;
+	}
+
+
+	public double getPricePerDay() {
+		return pricePerDay;
+	}
+
+
+	public void setPricePerDay(double pricePerDay) {
+		this.pricePerDay = pricePerDay;
+	}
+	
+	
+	
+	
+}
