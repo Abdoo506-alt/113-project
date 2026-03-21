@@ -1,0 +1,52 @@
+
+
+public class Car extends Vehicle{
+	protected int NumberOfDoors; // : Numbers Of doors of the car
+	protected boolean  insuranceIncluded;// : is the car has  insurance or not
+	protected double pricePerDay;//:  Rental price per day 
+	
+	
+	
+	public Car(String Brand, String Model, int year, String colour,
+	           boolean AvailabilityStatus, int numberOfDoors, boolean insuranceIncluded) {// : Costurctor
+	    super(Brand, Model, year, colour, AvailabilityStatus);
+	    NumberOfDoors = numberOfDoors;
+	    this.insuranceIncluded = insuranceIncluded;
+	}
+	
+	public double calculateRentalCost(int days) {// :abstract method Calculate the total cost by multiply days * price per day and check if the car has insurance and add 50 SAR and doesn't add if don't has. 
+	    double cost = days * pricePerDay;
+
+	    if (insuranceIncluded) {
+	        cost += 50;
+	    }
+
+	    return cost;
+	}	
+
+	
+	// ↓ GETTERS & SETTERS OF THE ATTRUBUTES ↓.
+	public int getNumberOfDoors() {
+		return NumberOfDoors;
+	}
+
+	public void setNumberOfDoors(int numberOfDoors) {
+		NumberOfDoors = numberOfDoors;
+	}
+
+	public boolean isInsuranceIncluded() {
+		return insuranceIncluded;
+	}
+
+	public void setInsuranceIncluded(boolean insuranceIncluded) {
+		this.insuranceIncluded = insuranceIncluded;
+	}
+
+	public double getPricePerDay() {
+		return pricePerDay;
+	}
+
+	public void setPricePerDay(double pricePerDay) {
+		this.pricePerDay = pricePerDay;
+		}
+	}
