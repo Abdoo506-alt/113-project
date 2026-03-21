@@ -1,0 +1,34 @@
+
+public class ElectricCar extends Car {
+	private double batteryCapacity;//: the battaery Capacity of the Electric Car
+	
+	private final double electricityPrice =0.25;//: the final  electricity Price .
+	public ElectricCar(String Brand, String Model, int year, String colour, boolean AvailabilityStatus,
+			int numberOfDoors, boolean insuranceIncluded, double batteryCapacity, double dailayRate) {//: Constructor
+		super(Brand, Model, year, colour, AvailabilityStatus, numberOfDoors, insuranceIncluded);
+		this.batteryCapacity = batteryCapacity;
+		
+	}
+	
+	
+	public double calculateRentalCost(int days) {//return the cost per day  with the price of the electricity in the battry  initially present in the car
+	    double cost = super.calculateRentalCost(days);
+	    cost += batteryCapacity * electricityPrice;
+	    return cost;
+	}
+	
+	// ↓ GETTERS & SETTERS OF THE ATTRUBUTES ↓.
+
+	public double getBatteryCapacity() {
+		return batteryCapacity;
+	}
+	
+	
+
+	public double getElectricityPrice() {
+		return electricityPrice;
+	}
+	
+	
+
+}
