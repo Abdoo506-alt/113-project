@@ -1,14 +1,20 @@
-public class Person {
-    protected String name;
-    protected String id;
-    protected String phoneNum;
 
-    public Person(String name,  String id,  String phoneNum) {
+public class Person {
+    protected String name;  // name of the person
+    protected String id;    // identification number of the user
+    protected String phoneNum;  // person's phone number
+    protected Rental[] rentalHistory;  // array of the rented vehicle
+    public Person(String name,  String id,  String phoneNum) {// constructor
         this.name = name;
         this.id = id;
         this.phoneNum = phoneNum;
     }
-
+    public Person() {  // default constructor
+    	this.name="undefined";
+    	this.id="undefined";
+    	this.phoneNum="undefined";
+    }
+     // getters and setters
     public String getName() {
         return name;
     }
@@ -45,4 +51,4 @@ public class Person {
     public String toString() {
         return "Name: " + name + ", ID: " + id + ", Phone: " + phoneNum;
     }
-
+}
