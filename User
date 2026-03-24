@@ -1,0 +1,61 @@
+// this class is for the client or user which defines the methods
+// that the user is allowed to do
+
+
+public class User extends Person {
+    private int rentalCount; // the number of rented vehicles or accessory
+    private String licenseNumber;   //  driving license of the client
+    
+     // constructor
+    public User(String name,  String id, String phoneNum,
+                String licenseNumber,int size) {
+        super(name, id,  phoneNum);
+        this.licenseNumber = licenseNumber;
+        this.rentalCount = 0;
+        this.rentalHistory = new Rental[size];
+    }
+    public User() {  // default constructor
+    	super();
+    	this.licenseNumber="Undefined";
+    }
+    // allow the user to rent a vehicle 
+    public Rental rentVehicle(Vehicle v, int daysVehicle, Accessory accessory,int daysAccessory) {
+        if (v.isRentable()) {
+            Rental rental = new Rental("R" + (rentalCount + 1), v,this,daysVehicle, accessory);
+            rental.startRental();
+            if (rentalCount < rentalHistory.length) {
+                rentalHistory[rentalCount++] = rental;
+            }
+            rentalCount++;
+            return rental;
+        }
+        return null;
+    }
+      // allows the user to return a vehicle
+    public void returnVehicle(Rental r) {
+        if (r != null) {
+            r.endRental();
+        }
+    }
+      // allows the user to extend the period of 
+    public void extendPeriod(Rental r, int extraDays) {
+        if (r != null) {
+            r.extendRental(extraDays);
+        }
+    }
+      // allows the user to view his rental history
+    public void viewRentalHistory() {
+        for (int i = 0; i < rentalCount; i++) {
+            System.out.println(rentalHistory[i]);
+        }
+    }
+     // getters and setters
+    public String getLicenseNumber() {
+        return licenseNumber;
+    }
+
+    public int getRentalCount() {
+        return rentalCount;
+    }
+  
+}
