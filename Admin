@@ -1,0 +1,105 @@
+
+public class Admin extends Person {
+    private String role;             // Admin's role 
+    private Vehicle[] vehicles;      // Vehicles array that allows each Admin to add up to 1000 vehicle
+    private int vehicleCount;         // vehicle counter once the Admin adds a vehicle it increases by 1
+    private Accessory[] accessories;    // Accessory array that allows each Admin to add up to 1000 accessory
+    private int accessoryCount;      // accessory counter once the Admin adds an accessory it increases by 1
+//  constructor
+    public Admin(String name,  String id, String phoneNum, String role) {// constructor
+        super(name,  id, phoneNum);
+        this.role = role;	
+        this.vehicles = new Vehicle[1000];      // allows the admin to add up to 1000 vehicles
+        this.accessories = new Accessory[1000];  // allows the admin to add up to 1000 accessory
+        this.vehicleCount = 0;
+        this.accessoryCount = 0;
+    }
+    public Admin() {  // default constructor
+    	super();
+    	this.role="employee";
+    }
+     //  allows the Admin to add a vehicle to the array if its possible
+    public void addVehicle(Vehicle vehicle) {
+        if (vehicleCount < vehicles.length) {
+            vehicles[vehicleCount++] = vehicle;
+            System.out.println("Vehicle added successfully.");
+        } else {
+            System.out.println("Vehicle array is full.");
+        }
+    }
+     // allows the Admin to remove a vehicle from the array 
+    public void removeVehicle(String model) {
+        int index = -1;
+        // searching for the vehicle by its model
+        for (int i = 0; i < vehicleCount; i++) {
+            if (vehicles[i].getModel().equalsIgnoreCase(model)) {
+                index = i;
+                break;
+            }
+        }
+      //  if we found the vehicle it will be removed, else it will print vehicle not found
+        if (index != -1) {
+        	// we start from the vehicle(the one which will be deleted) and and rearrange them to be ordered without null
+            for (int i = index; i < vehicleCount - 1; i++) {
+                vehicles[i] = vehicles[i + 1];
+            }
+            vehicles[vehicleCount - 1] = null;
+            vehicleCount--;
+            System.out.println("Vehicle removed successfully.");
+        } else {
+            System.out.println("Vehicle not found.");
+        }
+    }
+    // searching for vehicle by its brand or model
+    public Vehicle searchVehicle(String keyword) {
+        for (int i = 0; i < vehicleCount; i++) {
+            if (vehicles[i].getBrand().equalsIgnoreCase(keyword) ||
+                vehicles[i].getModel().equalsIgnoreCase(keyword)) {
+                return vehicles[i];
+            }
+        }
+        return null;
+    }
+    //  allows the Admin to add an accessory to the array if its possible
+    public void addAccessory(Accessory accessory) {
+        if (accessoryCount < accessories.length) {
+            accessories[accessoryCount++] = accessory;
+        }
+    }
+    // allows the user to search for accessory
+    public Accessory searchAccessory(String name) {
+        for (int i = 0; i < accessoryCount; i++) {
+            if (accessories[i].getName().equalsIgnoreCase(name)) {
+                return accessories[i];
+            }
+        }
+        return null;
+    }
+     // displays all vehicles
+    public void displayVehicles() {
+        for (int i = 0; i < vehicleCount; i++) {
+            System.out.println(vehicles[i]);
+        }
+    }
+     // generates simple reports
+    public String generateReport() {
+        return "Admin Report \n Vehicles: " + vehicleCount +
+               ", Accessories: " + accessoryCount +
+               ",Profit: " + calculateProfitRecursive(rentalHistory.length - 1);
+    }
+     // recursive method that calculates the total profit of the system
+    public double calculateProfitRecursive(int index) {
+        if (index < 0) {
+            return 0;
+        }
+        return rentalHistory[index].totalPrice() + calculateProfitRecursive(index - 1);
+    }
+     // setters and getters
+    public String getRole() {
+        return role;
+    }
+    public void setRole(String role) {
+    	this.role=role;
+    }
+    
+}
