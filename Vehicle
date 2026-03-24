@@ -6,8 +6,8 @@ public abstract class Vehicle implements Rentable{
 	protected int Year;// Manuafacure Vehicle year
 	protected String colour; // : color of the Vehicle
 	protected boolean availabilyStatus;//: show the Vehicle is available or not
+    protected double pricePerDay;//:  Rental price per day 
 	
-	;
 	
 	
 	
