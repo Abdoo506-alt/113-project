@@ -1,93 +1,93 @@
-
-
-public abstract class Vehicle implements Rentable{
-	protected String Brand; // : Brand of the Vehicle
-	protected String Model;//  : Model of the Vehicle
-	protected int Year;// Manuafacure Vehicle year
-	protected String colour; // : color of the Vehicle
-	protected boolean availabilyStatus;//: show the Vehicle is available or not
-    protected double pricePerDay;//:  Rental price per day 
+public abstract class Vehicle implements Rentable {
 	
-	
-	
-	
-	public Vehicle() {// : defualt Constructor
+		protected String Brand; // : Brand of the Vehicle
+		protected String Model;//  : Model of the Vehicle
+		protected int Year;// Manufacture Vehicle year
+		protected String colour; // : color of the Vehicle
+		protected boolean availabilityStatus;//: show the Vehicle is available or not
+		protected double pricePerDay;//:  Rental price per day 
 		
-		Brand = "";
-		Model = "";
-		Year = -1;
-		colour="";
-		this.availabilyStatus = false;
 		
-	}
-	
-	
-	public Vehicle(String brand, String model, int year,String Colour, boolean availabilyStatus) { // : a consturtor
 		
-		Brand = brand;
-		Model = model;
-		Year = year;
-		colour=Colour;
-		this.availabilyStatus = availabilyStatus;
-	
-	}
-	public abstract double calculateRentalCost(int days);// : Abstract Method to calcualte rental cost
-	
+		public Vehicle() {// : default Constructor
+			
+			Brand = "";
+			Model = "";
+			Year = -1;
+			colour="";
+			this.availabilityStatus = false;
+			this.pricePerDay=0;
+			
+		}
+		
+		
+		public Vehicle(String brand, String model, int year,String Colour, boolean availabilyStatus,double pricePerDay) { // : a consturtor
+			
+			Brand = brand;
+			Model = model;
+			Year = year;
+			colour=Colour;
+			this.availabilityStatus = availabilyStatus;
+			this.pricePerDay=pricePerDay;
+		
+		}
+		public abstract double calculateRentalCost(int days);// : Abstract Method to calculate rental cost
+		
 
 
-	
-	// ↓ GETTERS & SETTERS OF THE ATTRUBUTES ↓.
-	public String getBrand() {
-		return Brand;
-	}
-	public boolean isRentable() {
-		return availabilyStatus;
-	}
+		public boolean isRentable() {// checks weather the vehicle is rentable or not
+			return availabilityStatus;
+		}
+		
+		// ↓ GETTERS & SETTERS OF THE ATTRUBUTES ↓.
+		public String getBrand() {
+			return Brand;
+		}
 
 
-	public void setBrand(String brand) {
-		Brand = brand;
-	}
+		public void setBrand(String brand) {
+			Brand = brand;
+		}
 
 
-	public String getModel() {
-		return Model;
-	}
+		public String getModel() {
+			return Model;
+		}
 
 
-	public void setModel(String model) {
-		Model = model;
-	}
+		public void setModel(String model) {
+			Model = model;
+		}
 
 
-	public int getYear() {
-		return Year;
-	}
+		public int getYear() {
+			return Year;
+		}
 
 
-	public void setYear(int year) {
-		Year = year;
-	}
+		public void setYear(int year) {
+			Year = year;
+		}
 
 
-	public boolean isAvailabilyStatus() {
-		return availabilyStatus;
-	}
+		/*public boolean isAvailabilyStatus() {
+			return availabilyStatus;
+		}*/
 
 
-	public void setAvailabilyStatus(boolean availabilyStatus) {
-		this.availabilyStatus = availabilyStatus;
-	}
+		public void setAvailabilityStatus(boolean availabilyStatus) {
+			this.availabilityStatus = availabilyStatus;
+		}
 
 
-	
-	
-	
+		  @Override
+		    public String toString() {
+		        return Brand + " " + Model + " (" + Year + ") - "  +
+		               ", Price/Day: " + pricePerDay +
+		               ", Available: " + availabilityStatus;
+		    }
+		
+		
 
-	
-	
-	
-	
-	
-
-}
+		
+		}
