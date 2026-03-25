@@ -1,15 +1,17 @@
-public class Payment {
-    private double amount;// the amount of money
 
-    public Payment(String paymentMethod, double amount) {// constructor 
+public class Payment {
+    private double amount;// amount of payment
+    public Payment( double amount) {//constructor
+       
         this.amount = amount;
     }
 
-    public void processPayment() {
+    public void processPayment() { // payment process
         System.out.println("Payment processed successfully.");
         System.out.println("Payment Method: Online, Amount: " + amount);
     }
 
+    // getter 
     public double getAmount() {
         return amount;
     }
