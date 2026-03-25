@@ -1,0 +1,22 @@
+public class Payment {
+    private int paymentId;
+    private double amount;
+
+    public Payment(int paymentId, double amount) {
+        this.paymentId = paymentId;
+        this.amount = amount;
+    }
+
+    public void processPayment() {
+        System.out.println("Payment processed successfully.");
+        System.out.println("Payment ID: " + paymentId + ", Amount: " + amount);
+    }
+
+    public int getPaymentId() {
+        return paymentId;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+} 
