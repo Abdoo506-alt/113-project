@@ -1,3 +1,5 @@
+package project113;
+
 
 public class Admin extends Person {
     private String role;             // Admin's role 
@@ -85,7 +87,7 @@ public class Admin extends Person {
     public String generateReport() {
         return "Admin Report \n Vehicles: " + vehicleCount +
                ", Accessories: " + accessoryCount +
-               ",Profit: " + calculateProfitRecursive(rentalHistory.length - 1);
+               ",Profit: " + calculateProfitRecursive(rentalCount - 1);
     }
      // recursive method that calculates the total profit of the system
     public double calculateProfitRecursive(int index) {
