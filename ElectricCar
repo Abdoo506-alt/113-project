@@ -1,13 +1,16 @@
-
 public class ElectricCar extends Car {
-	private double batteryCapacity;//: the battaery Capacity of the Electric Car
+private double batteryCapacity;//: the battery Capacity of the Electric Car
 	
 	private final double electricityPrice =0.25;//: the final  electricity Price .
 	public ElectricCar(String Brand, String Model, int year, String colour, boolean AvailabilityStatus,
-			int numberOfDoors, boolean insuranceIncluded, double batteryCapacity, double dailayRate) {//: Constructor
-		super(Brand, Model, year, colour, AvailabilityStatus, numberOfDoors, insuranceIncluded);
+			double pricePerDay,int numberOfDoors, boolean insuranceIncluded, double batteryCapacity) {//: Constructor
+		super(Brand, Model, year, colour, AvailabilityStatus,pricePerDay, numberOfDoors, insuranceIncluded);
 		this.batteryCapacity = batteryCapacity;
 		
+	}
+	public ElectricCar() {
+		super();
+		this.batteryCapacity=0;
 	}
 	
 	
@@ -30,5 +33,4 @@ public class ElectricCar extends Car {
 	}
 	
 	
-
 }
