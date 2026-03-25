@@ -1,3 +1,4 @@
+
 public class Accessory implements Rentable {
     private String name;                // Accessory name
     private String type;                //Accessory type
