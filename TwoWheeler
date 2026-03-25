@@ -1,16 +1,18 @@
 
-
-public class TwoWheeler extends Vehicle{
+public class TwoWheeler extends Vehicle {
 	private String type;// : type of the vehicle.
 	private boolean helmetlncluded;//: check if there is a helmet safe included or not.
-	private double pricePerDay;//: price per day espacially for Two Wheeler.
 	
-	
-	public TwoWheeler(String Brand,String Model,int Years,String colour,boolean AvailabilityStatus,String type, boolean hemetlnduded, double pricePerDay) {//:Constructor
-		super(Brand,Model,Years,colour,AvailabilityStatus);
+	public TwoWheeler(String Brand,String Model,int Years,String colour,boolean AvailabilityStatus,double pricePerDay,String type, boolean hemetlnduded) {//:Constructor
+		super(Brand,Model,Years,colour,AvailabilityStatus,pricePerDay);
 		this.type = type;
 		this.helmetlncluded = hemetlnduded;
-		this.pricePerDay = pricePerDay;
+		
+	}
+	public TwoWheeler() {
+		super();
+		this.type="undifened";
+		this.helmetlncluded=false;
 	}
 
 
@@ -52,7 +54,4 @@ public class TwoWheeler extends Vehicle{
 		this.pricePerDay = pricePerDay;
 	}
 	
-	
-	
-	
-}
+	}
