@@ -1,3 +1,4 @@
+package project113;
 // this class is for the client or user which defines the methods
 // that the user is allowed to do
 
@@ -11,20 +12,20 @@ public class User extends Person {
                 String licenseNumber,int size) {
         super(name, id,  phoneNum);
         this.licenseNumber = licenseNumber;
-        this.rentalCount = 0;
         this.rentalHistory = new Rental[size];
-    }
+        
+  }
     public User() {  // default constructor
     	super();
     	this.licenseNumber="Undefined";
     }
     // allow the user to rent a vehicle 
-    public Rental rentVehicle(Vehicle v, int daysVehicle, Accessory accessory,int daysAccessory) {
+    public Rental rentVehicle(Vehicle v, int daysVehicle, Accessory accessory) {
         if (v.isRentable()) {
             Rental rental = new Rental("R" + (rentalCount + 1), v,this,daysVehicle, accessory);
             rental.startRental();
             if (rentalCount < rentalHistory.length) {
-                rentalHistory[rentalCount++] = rental;
+                rentalHistory[rentalCount] = rental;
             }
             rentalCount++;
             return rental;
