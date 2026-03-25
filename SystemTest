@@ -1,0 +1,292 @@
+package project113;
+import java.util.Scanner;
+
+public class SystemTest {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        Admin admin = new Admin("Taha","a101","0546843354","Manager");
+        User user1 = new User("Mahammed","b202","0533910102","ladf23",10);
+        //User user2= new User("Abdulrahman","c303","0533715387","lice123",1);
+        admin.addVehicle(new ElectricCar("Tesla", "Model3", 2024, "White", true,
+                200, 4, true, 75));
+        admin.addVehicle(new FuelCar("Toyota", "Corolla", 2022, "Black", true,
+                150, 4, false, 50, "Petrol"));
+        admin.addVehicle(new TwoWheeler("Yamaha", "ScooterX", 2023, "Blue", true,
+                60, "Scooter", true));
+
+        admin.addAccessory(new Accessory("Helmet", "Safety", 10, true));
+        admin.addAccessory(new Accessory("GPS Device", "Navigation", 15, true));
+
+        int mainChoice;
+
+        do {
+            System.out.println("\n========== Vehicle Rental System ==========");
+            System.out.println("1. Admin");
+            System.out.println("2. User");
+            System.out.println("0. Exit");
+            System.out.print("Choose role: ");
+            mainChoice = input.nextInt();
+            input.nextLine();
+
+            switch (mainChoice) {
+            case 1:
+                    adminMenu(input, admin);
+                    break;
+                case 2:
+                    userMenu(input, admin, user1);
+                    break;
+                case 0:
+                    System.out.println("Thank you for using the system.");
+                    break;
+                default:
+                    System.out.println("Invalid choice.");
+            }
+
+        } while (mainChoice != 0);
+
+        input.close();
+    }
+
+   
+
+    public static void addVehicleMenu(Scanner input, Admin admin) {
+        System.out.println("\nChoose vehicle type to add:");
+        System.out.println("1. Electric Car");
+        System.out.println("2. Fuel Car");
+        System.out.println("3. Two Wheeler");
+        System.out.print("Enter choice: ");
+        int type = input.nextInt();
+        input.nextLine();
+
+        System.out.print("Brand: ");
+        String brand = input.nextLine();
+        System.out.print("Model: ");
+        String model = input.nextLine();
+        System.out.print("Year: ");
+        int year = input.nextInt();
+        input.nextLine();
+        System.out.print("Colour: ");
+        String colour= input.nextLine();
+      //  input.nextLine();
+        System.out.println("Price per day: ");
+        double pricePerDay=input.nextDouble();
+        System.out.print("Has Insurance? (true/false): ");
+        boolean insuranceIncluded = input.nextBoolean();
+
+        switch (type) {
+            case 1:
+               
+                //System.out.print("Number of seats: ");
+                //int eSeats = input.nextInt();
+               
+                System.out.print("Battery capacity: ");
+                double battery = input.nextDouble();
+               // System.out.print("Charging time: ");
+                //double chargeTime = input.nextDouble();
+                //input.nextLine();
+
+                admin.addVehicle(new ElectricCar(brand, model, year,colour,true,pricePerDay,4,insuranceIncluded, battery));
+                break;
+
+            case 2:
+                
+                System.out.print("Number of seats: ");
+                int fSeats = input.nextInt();
+                System.out.print("Fuel tank capacity: ");
+                double tank = input.nextDouble();
+                input.nextLine();
+                System.out.print("Fuel type: ");
+                String fuelType = input.nextLine();
+
+                admin.addVehicle(new FuelCar(brand, model, year,colour, true,
+                        pricePerDay, fSeats, insuranceIncluded, tank, fuelType));
+                break;
+
+            case 3:
+                System.out.print("Type (Bicycle/Scooter): ");
+                String twoType = input.nextLine();
+                input.nextLine();
+                System.out.print("Helmet included? (true/false): ");
+                boolean helmet = input.nextBoolean();
+                input.nextLine();
+
+                admin.addVehicle(new TwoWheeler(brand, model, year,colour, true,
+                        pricePerDay, twoType, helmet));
+                break;
+
+            default:
+                System.out.println("Invalid vehicle type.");
+        }
+    }
+    public static void adminMenu(Scanner input, Admin admin) {
+        int choice;
+
+        do {
+            System.out.println("\n========== Admin Menu ==========");
+            System.out.println("1. Display all vehicles");
+            System.out.println("2. Search vehicle");
+            System.out.println("3. Add vehicle");
+            System.out.println("4. Remove vehicle");
+            System.out.println("5. Add accessory");
+            System.out.println("6. Generate report");
+            System.out.println("0. Back to main menu");
+            System.out.print("Enter choice: ");
+            choice = input.nextInt();
+            input.nextLine();
+
+            switch (choice) {
+                case 1:
+                    admin.displayVehicles();
+                    break;
+
+                case 2:
+                    System.out.print("Enter brand or model: ");
+                    String keyword = input.nextLine();
+                    Vehicle foundVehicle = admin.searchVehicle(keyword);
+                    if (foundVehicle != null) {
+                        System.out.println("Vehicle found:");
+                        System.out.println(foundVehicle);
+                    } else {
+                        System.out.println("Vehicle not found.");
+                    }
+                    break;
+
+                case 3:
+                    addVehicleMenu(input, admin);
+                    break;
+
+                case 4:
+                    System.out.print("Enter model to remove: ");
+                    String model = input.nextLine();
+                    admin.removeVehicle(model);
+                    break;
+
+                case 5:
+                    System.out.print("Enter accessory name: ");
+                    String accName = input.nextLine();
+                    System.out.print("Enter accessory type: ");
+                    String accType = input.nextLine();
+                    System.out.print("Enter price per day: ");
+                    double accPrice = input.nextDouble();
+                    input.nextLine();
+
+                    admin.addAccessory(new Accessory(accName, accType, accPrice, true));
+                    System.out.println("Accessory added successfully.");
+                    break;
+
+                case 6:
+                    System.out.println(admin.generateReport());
+                    break;
+
+                case 0:
+                    System.out.println("Returning to main menu...");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice.");
+            }
+
+        } while (choice != 0);
+    }
+    public static void userMenu(Scanner input, Admin admin, User user) {
+        int choice;
+        Rental lastRental = null;
+
+        do {
+            System.out.println("\n========== User Menu ==========");
+            System.out.println("1. Display available vehicles");
+            System.out.println("2. Search vehicle");
+            System.out.println("3. Rent vehicle");
+            System.out.println("4. Extend rental");
+            System.out.println("5. Return vehicle");
+            System.out.println("6. View rental history");
+            System.out.println("0. Back to main menu");
+            System.out.print("Enter choice: ");
+            choice = input.nextInt();
+            input.nextLine();
+
+            switch (choice) {
+                case 1:
+                    admin.displayVehicles();
+                    break;
+
+                case 2:
+                    System.out.print("Enter brand or model: ");
+                    String keyword = input.nextLine();
+                    Vehicle foundVehicle = admin.searchVehicle(keyword);
+                    if (foundVehicle != null) {
+                        System.out.println("Vehicle found:");
+                        System.out.println(foundVehicle);
+                    } else {
+                        System.out.println("Vehicle not found.");
+                    }
+                    break;
+
+                case 3:
+                    System.out.print("Enter vehicle model to rent: ");
+                    String model = input.nextLine();
+                    Vehicle vehicle = admin.searchVehicle(model);
+
+                    if (vehicle != null && vehicle.isRentable()) {
+                        System.out.print("Enter number of rental days: ");
+                        int daysVehicle = input.nextInt();
+                        input.nextLine();
+                        Accessory accessory = null;
+                       
+                        
+
+                        lastRental = user.rentVehicle(vehicle, daysVehicle, accessory);
+
+                        if (lastRental != null) {
+                            Payment payment = new Payment(lastRental.totalPrice());
+                            payment.processPayment();
+                            System.out.println("Rental completed successfully.");
+                            System.out.println(lastRental);
+                        } else {
+                            System.out.println("Rental failed.");
+                        }
+                    } else {
+                        System.out.println("Vehicle unavailable or not found.");
+                    }
+                    break;
+
+                case 4:
+                    if (lastRental != null && lastRental.getStatus().equalsIgnoreCase("Active")) {
+                        System.out.print("Enter extra days: ");
+                        int extraDays = input.nextInt();
+                        input.nextLine();
+                        user.extendPeriod(lastRental, extraDays);
+                        System.out.println("Rental extended successfully.");
+                        System.out.println(lastRental);
+                    } else {
+                        System.out.println("No active rental found.");
+                    }
+                    break;
+
+                case 5:
+                    if (lastRental != null && lastRental.getStatus().equalsIgnoreCase("Active")) {
+                        user.returnVehicle(lastRental);
+                        System.out.println("Vehicle returned successfully.");
+                        System.out.println(lastRental);
+                    } else {
+                        System.out.println("No active rental found.");
+                    }
+                    break;
+
+                case 6:
+                    user.viewRentalHistory();
+                    break;
+
+                case 0:
+                    System.out.println("Returning to main menu...");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice.");
+            }
+
+        } while (choice != 0);
+    }
+
+  
+}
