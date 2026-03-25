@@ -1,3 +1,4 @@
+package project113;
 
 public class Rental {
     private int numOfDays;// number of rental days
@@ -21,7 +22,7 @@ public class Rental {
     }
 
     public double totalPrice() { // the total price of the rented process
-        double total = numOfDays * vehicle.calculateRentalCost(numOfDays);
+        double total = vehicle.calculateRentalCost(numOfDays);
         if (accessory != null) {
             total += accessory.calculateRentalCost(numOfDays);
         }
@@ -31,7 +32,7 @@ public class Rental {
     public void startRental() {
         if (vehicle.isRentable()) {
             vehicle.setAvailabilityStatus(false);
-            if (accessory != null) {
+            if (accessory.isRentable()) {
                 accessory.setAvailability(false);
             }
             status = "Active";
@@ -41,7 +42,9 @@ public class Rental {
     public void extendRental(int extraDays) {
         if (status.equalsIgnoreCase("Active")) {
             numOfDays += extraDays;
+            payment.setAmount(totalPrice());
         }
+        
     }
 // ending rental process
     public void endRental() {
