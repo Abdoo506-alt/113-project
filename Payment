@@ -1,19 +1,13 @@
 public class Payment {
-    private String paymentMethod;
-    private double amount;
+    private double amount;// the amount of money
 
-    public Payment(String paymentMethod, double amount) {
-        this.paymentMethod = paymentMethod;
+    public Payment(String paymentMethod, double amount) {// constructor 
         this.amount = amount;
     }
 
     public void processPayment() {
         System.out.println("Payment processed successfully.");
-        System.out.println("Payment Method: " + paymentMethod + ", Amount: " + amount);
-    }
-
-    public String getPaymentMethod() {
-        return paymentMethod;
+        System.out.println("Payment Method: Online, Amount: " + amount);
     }
 
     public double getAmount() {
