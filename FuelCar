@@ -1,14 +1,19 @@
 
-public class FuelCar extends Car{
-	
-	private double fuelTankCapacity;//: value attrubutes of the fuel Tank  Capacity
-	private String fuelType;//: value attrubutes of the fuel Type
-	public FuelCar(String Brand, String Model, int year, String colour, boolean AvailabilityStatus, int numberOfDoors,
+public class FuelCar extends Car {
+
+	private double fuelTankCapacity;//: value attributes of the fuel Tank  Capacity
+	private String fuelType;//: value attributes of the fuel Type
+	public FuelCar(String Brand, String Model, int year, String colour, boolean AvailabilityStatus,double pricePerDay, int numberOfDoors,
 			boolean insuranceIncluded, double fuelTankCapacity, String fuelType) {//: Constructor.
 		
-		super(Brand, Model, year, colour, AvailabilityStatus, numberOfDoors, insuranceIncluded);
+		super(Brand, Model, year, colour, AvailabilityStatus,pricePerDay, numberOfDoors, insuranceIncluded);
 		this.fuelTankCapacity = fuelTankCapacity;
 		this.fuelType = fuelType;
+	}
+	public FuelCar() {
+		super();
+		this.fuelTankCapacity=0;
+		this.fuelType="";
 	}
 	
 	// ↓ GETTERS & SETTERS OF THE ATTRUBUTES ↓.
@@ -37,24 +42,5 @@ public class FuelCar extends Car{
 	}
 	
 	
+	
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	
-	
-
-
