@@ -1,0 +1,89 @@
+
+public class Rental {
+    private int numOfDays;// number of rental days
+    private String rentalId;// the ID of each rental process
+    private String status;  // the state of rental
+    private Vehicle vehicle;// the vehicle which will be rented
+    private User user;// the user who will make rentals
+    private Accessory accessory;// the accessory which will be rented 
+    private Payment payment;  // each rental will contain payment
+
+    public Rental(String rentalId, Vehicle vehicle, User user, int numOfDays, Accessory accessory) {
+        this.rentalId = rentalId;
+        this.vehicle = vehicle;
+        this.user = user;
+        this.numOfDays = numOfDays;
+        this.accessory = accessory;
+       this.status = "Created";
+        // Creating Payment inside Rental (composition)
+        this.payment = new Payment(totalPrice());
+        
+    }
+
+    public double totalPrice() { // the total price of the rented process
+        double total = numOfDays * vehicle.calculateRentalCost(numOfDays);
+        if (accessory != null) {
+            total += accessory.calculateRentalCost(numOfDays);
+        }
+        return total;
+    }
+// starting rental process
+    public void startRental() {
+        if (vehicle.isRentable()) {
+            vehicle.setAvailabilityStatus(false);
+            if (accessory != null) {
+                accessory.setAvailability(false);
+            }
+            status = "Active";
+        }
+    }
+// extending rental process
+    public void extendRental(int extraDays) {
+        if (status.equalsIgnoreCase("Active")) {
+            numOfDays += extraDays;
+        }
+    }
+// ending rental process
+    public void endRental() {
+        vehicle.setAvailabilityStatus(true);
+        if (accessory != null) {
+            accessory.setAvailability(true);
+        }
+        status = "Completed";
+    }
+   // getters and setters
+    public int getNumOfDays() {
+        return numOfDays;
+    }
+
+    public String getRentalId() {
+        return rentalId;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public Accessory getAccessory() {
+        return accessory;
+    }
+
+    @Override
+    //  display the info of the rental
+    public String toString() {
+        return "Rental ID: " + rentalId +
+               ", User: " + user.getName() +
+               ", Vehicle: " + vehicle.getBrand() + " " + vehicle.getModel() +
+               ", Days: " + numOfDays +
+               ", Status: " + status +
+               ", Total: " + totalPrice();
+    }
+}
