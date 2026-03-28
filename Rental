@@ -30,9 +30,9 @@ public class Rental {
     }
 // starting rental process
     public void startRental() {
-        if (vehicle.isRentable()) {
+        if (vehicle!=null&&vehicle.isRentable()) {
             vehicle.setAvailabilityStatus(false);
-            if (accessory.isRentable()) {
+            if (accessory!=null&&accessory.isRentable()) {
                 accessory.setAvailability(false);
             }
             status = "Active";
