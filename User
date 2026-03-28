@@ -21,7 +21,7 @@ public class User extends Person {
     }
     // allow the user to rent a vehicle 
     public Rental rentVehicle(Vehicle v, int daysVehicle, Accessory accessory) {
-        if (v.isRentable()) {
+        if (v!=null&&v.isRentable()) {
             Rental rental = new Rental("R" + (rentalCount + 1), v,this,daysVehicle, accessory);
             rental.startRental();
             if (rentalCount < rentalHistory.length) {
